@@ -43,7 +43,18 @@
 
 <button></button>
 <script>
+  const divs = document.querySelectorAll('div');
 
+  function logText(e)
+  {
+    console.log(this.classList.value);
+    e.stopPropagation();  //stops propagation after the first layer, om mext click propagation continues from the next layer
+  }
+
+  divs.forEach(div => div.addEventListener('click', logText, {
+    capture: false, //if true, makes propogation outside to inside
+    once: true //unbinds event after one click
+  }));
 </script>
 </body>
 </html>
